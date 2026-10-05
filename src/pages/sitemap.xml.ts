@@ -1,7 +1,16 @@
 import type { APIRoute } from 'astro';
 import { businessConfig } from '../config/business';
 
-const pages = ['/', '/menu/', '/about/', '/visit/', '/preorder/', '/order/'];
+const pages = [
+  '/',
+  '/menu/',
+  '/cinnamon-rolls-austin/',
+  '/cookies-austin/',
+  '/about/',
+  '/visit/',
+  '/preorder/',
+  '/order/',
+];
 
 export const GET: APIRoute = () => {
   const urls = pages.map((path) => `  <url><loc>${businessConfig.siteUrl}${path}</loc></url>`).join('\n');

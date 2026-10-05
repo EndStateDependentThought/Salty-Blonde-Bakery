@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PagePhotoHero from '../components/shared/PagePhotoHero.astro';
+import OrderAction from '../components/site/OrderAction.astro';
+import { images } from '../data/images';
+import { businessConfig } from '../config/business';
+---
+
+<SiteLayout
+  title="Brown Butter Cookies in Austin | Salty Blonde Bakery"
+  description="Small-batch brown butter cookies in Austin with crisp edges, chewy centers, premium chocolate, and rotating flavors from Salty Blonde Bakery in Hyde Park."
+>
+  <main id="main-content">
+    <PagePhotoHero
+      eyebrow="Hyde Park · Austin"
+      title="Brown butter cookies,<br /><em>made for the break-open shot.</em>"
+      body="Crisp edges, chewy centers, deep brown-butter flavor, premium chocolate, and rotating specials with just enough personality."
+      imageId="menuSaltedBrownButterChocolateChip"
+      supportImageId="menuHydeParkCookie"
+      ctaLabel="See today’s menu"
+      ctaHref="/order/"
+      secondaryLabel="Visit the bakery"
+      secondaryHref="/visit/"
+    />
+
+    <section class="story-section">
+      <div class="story-section__inner shell shell--wide">
+        <div class="story-section__copy reveal">
+          <p class="handwritten-ish">The cookie side of Salty Blonde</p>
+          <h2>Brown butter, good chocolate, crisp edges, chewy middles.</h2>
+          <p>If you found us while looking for the best cookies in Austin, start with the Salted Brown Butter Chocolate Chip or The Hyde Park. Customer reviews consistently call out freshness, texture, and the kind of flavor that makes a simple cookie feel worth the stop.</p>
+          <p>The staples stay recognizable while rotating cookies bring in fruit, crumble, coffee-cake, and seasonal ideas without turning the menu into a gimmick.</p>
+          <a class="text-link" href="/menu/#salted-brown-butter-chocolate-chip">See the cookie classics <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="story-section__image reveal reveal--delay-1" style={`--image-position:${images.crumbCookieTear.focalPoint}`}>
+          <Image src={images.crumbCookieTear.src} alt={images.crumbCookieTear.alt} widths={[520, 760, 1000, 1280]} sizes="(max-width: 720px) 100vw, 45vw" quality="high" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="values-section" aria-labelledby="cookies-values-title">
+      <div class="values-section__inner shell shell--wide">
+        <div class="values-section__intro reveal">
+          <p class="handwritten-ish">What makes them ours</p>
+          <h2 id="cookies-values-title">Simple cookies, taken seriously.</h2>
+        </div>
+        <div class="values-grid">
+          <article class="reveal"><h3>Brown butter first</h3><p>Deep caramelized flavor gives the cookie base more character before chocolate, toffee, pretzels, or seasonal additions show up.</p></article>
+          <article class="reveal reveal--delay-1"><h3>Texture matters</h3><p>Crisp edges and chewy centers are the target, not oversized cookies just for the sake of being oversized.</p></article>
+          <article class="reveal reveal--delay-2"><h3>Dozens when you need them</h3><p>Cookie pre-orders for groups, offices, parties, and gifting can be requested with at least {businessConfig.preorders.minimumNotice} notice.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="preorder-section">
+      <div class="preorder-section__inner shell shell--wide">
+        <figure class="preorder-section__image reveal" style={`--image-position:${images.cookieTray.focalPoint}`}>
+          <Image src={images.cookieTray.src} alt={images.cookieTray.alt} widths={[640, 900, 1200]} sizes="(max-width: 720px) 100vw, 46vw" quality="high" loading="lazy" decoding="async" />
+        </figure>
+        <div class="preorder-section__copy reveal reveal--delay-1">
+          <p class="handwritten-ish">Need a dozen?</p>
+          <h2>Cookies travel very well to offices, parties, and people you like.</h2>
+          <p>Send a pre-order request for larger quantities and the bakery will follow up to confirm what is possible for your date.</p>
+          <div class="inline-actions">
+            <a class="order-action" href="/preorder/"><span>Start a pre-order request</span><span aria-hidden="true">→</span></a>
+            <OrderAction label="Order today instead" variant="soft" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
