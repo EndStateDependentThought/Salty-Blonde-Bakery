@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PagePhotoHero from '../components/shared/PagePhotoHero.astro';
+import OrderAction from '../components/site/OrderAction.astro';
+import { images } from '../data/images';
+---
+
+<SiteLayout
+  title="About | Salty Blonde Bakery in Hyde Park Austin"
+  description="Meet Salty Blonde Bakery, a woman-owned small-batch bakery in Hyde Park making from-scratch cinnamon rolls, brown butter cookies, and rotating specials."
+>
+  <main id="main-content">
+    <PagePhotoHero
+      eyebrow="Woman-owned · Hyde Park"
+      title="Made the way you’d make it <em>for people you like.</em>"
+      body="Salty Blonde is a small-batch neighborhood bakery built around from-scratch cinnamon rolls, brown butter cookies, rotating specials, and the kind of care that used to show up at friends’ houses first."
+      imageId="processRolls"
+      supportImageId="packaging"
+      ctaLabel="See today’s menu"
+      ctaHref="/order/"
+      secondaryLabel="Come visit"
+      secondaryHref="/visit/"
+    />
+
+    <section class="story-section">
+      <div class="story-section__inner shell shell--wide">
+        <div class="story-section__copy reveal">
+          <p class="handwritten-ish">The short version</p>
+          <h2>A neighborhood bake became a neighborhood bakery.</h2>
+          <p>For years, this Salty Blonde was the person friends and neighbors counted on for holidays and special occasions. That same attention now lives in Hyde Park: fresh bakes, warm service, and a menu that keeps giving regulars something new to come back for.</p>
+        </div>
+        <figure class="story-section__image reveal reveal--delay-1" style={`--image-position:${images.customers.focalPoint}`}>
+          <Image src={images.customers.src} alt={images.customers.alt} widths={[520, 760, 1000]} sizes="(max-width: 720px) 100vw, 45vw" quality="high" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="values-section" aria-labelledby="values-title">
+      <div class="values-section__inner shell shell--wide">
+        <div class="values-section__intro reveal">
+          <p class="handwritten-ish">What matters here</p>
+          <h2 id="values-title">Good ingredients. Small batches. No need to overcomplicate it.</h2>
+        </div>
+        <div class="values-grid">
+          <article class="reveal"><h3>From scratch</h3><p>Baked fresh on the days we’re open, with the work happening right here in the bakery.</p></article>
+          <article class="reveal reveal--delay-1"><h3>Brown butter + good chocolate</h3><p>European butter, premium chocolate, and enough attention to texture that a simple cookie still feels like ours.</p></article>
+          <article class="reveal reveal--delay-2"><h3>Warm, not fussy</h3><p>The food can be indulgent without the bakery feeling precious. Come as you are; leave with something good.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-process">
+      <div class="about-process__grid shell shell--wide">
+        <figure class="about-process__wide reveal" style={`--image-position:${images.cookieTray.focalPoint}`}>
+          <Image src={images.cookieTray.src} alt={images.cookieTray.alt} widths={[640, 900, 1200, 1500]} sizes="(max-width: 720px) 100vw, 56vw" quality="high" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="about-process__tall reveal reveal--delay-1" style={`--image-position:${images.processCookies.focalPoint}`}>
+          <Image src={images.processCookies.src} alt={images.processCookies.alt} widths={[480, 720, 960]} sizes="(max-width: 720px) 58vw, 28vw" quality="high" loading="lazy" decoding="async" />
+        </figure>
+        <div class="about-process__copy reveal reveal--delay-2">
+          <p class="handwritten-ish">Behind the box</p>
+          <h2>Trays, dough, icing, repeat.</h2>
+          <p>There isn’t a separate “brand story” hiding behind the food. The story is mostly the work: bake it fresh, make it worth the stop, then do it again tomorrow.</p>
+          <OrderAction label="See what’s baking" />
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

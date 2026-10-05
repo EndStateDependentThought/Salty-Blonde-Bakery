@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import { bakeWall } from '../../data/bakeWall';
+import { images } from '../../data/images';
+---
+
+<section class="bake-wall" id="bakes" aria-labelledby="bakes-title">
+  <div class="bake-wall__intro shell shell--wide reveal">
+    <div>
+      <p class="handwritten-ish">A few things we’ve baked</p>
+      <h2 id="bakes-title">Come hungry. The lineup changes.</h2>
+    </div>
+    <p>These are highlights from the Salty Blonde archive — not a promise that every flavor is on today’s menu.</p>
+  </div>
+
+  <div class="bake-wall__grid shell shell--wide">
+    {bakeWall.map((item, index) => {
+      const image = images[item.imageId as keyof typeof images];
+      return (
+        <figure class:list={['bake-wall__item', item.className, `bake-wall__item--${item.size}`, 'reveal']} style={`--image-position:${image.focalPoint}; --delay:${Math.min(index, 3) * 45}ms`}>
+          <Image src={image.src} alt={image.alt} widths={[420, 640, 900, 1200]} sizes="(max-width: 720px) 100vw, 34vw" quality="high" loading="lazy" decoding="async" />
+          {item.note && <figcaption>{item.note}</figcaption>}
+        </figure>
+      );
+    })}
+
+    <div class="bake-wall__phrase wall-copy reveal">
+      <p><em>Rotating flavors.</em><br />Limited batches.<br />Always worth a look.</p>
+    </div>
+  </div>
+</section>

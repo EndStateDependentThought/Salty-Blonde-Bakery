@@ -1,0 +1,45 @@
+---
+import { businessConfig } from '../../config/business';
+import { siteConfig } from '../../config/site';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner shell shell--wide">
+    <div class="site-footer__brand">
+      <a class="brand brand--footer" href="/">
+        <span class="brand__primary">Salty Blonde</span>
+        <span class="brand__secondary">Bakery</span>
+      </a>
+      <p>Small-batch cinnamon rolls, brown butter cookies, and rotating specials in Hyde Park.</p>
+    </div>
+
+    <div class="site-footer__column">
+      <h2>Come by</h2>
+      <address>
+        {businessConfig.address.street}<br />
+        {businessConfig.address.city}, {businessConfig.address.region} {businessConfig.address.postalCode}
+      </address>
+      <a href={businessConfig.directionsUrl} target="_blank" rel="noreferrer">Get directions ↗</a>
+    </div>
+
+    <div class="site-footer__column">
+      <h2>Hours</h2>
+      {businessConfig.hours.map((row) => <p><span>{row.label}</span><strong>{row.display}</strong></p>)}
+    </div>
+
+    <div class="site-footer__column">
+      <h2>Keep up</h2>
+      <a href={businessConfig.instagramUrl} target="_blank" rel="noreferrer">Instagram ↗</a>
+      <a href={`mailto:${businessConfig.email}`}>Email us</a>
+      <a href={`tel:${businessConfig.phoneHref}`}>{businessConfig.phoneDisplay}</a>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom shell shell--wide">
+    <span>© {new Date().getFullYear()} Salty Blonde Bakery</span>
+    <nav aria-label="Footer navigation">
+      {siteConfig.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href="/order/">Order</a>
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../../data/images';
+import OrderAction from '../site/OrderAction.astro';
+---
+
+<section class="closing-order" aria-labelledby="closing-title">
+  <div class="closing-order__inner shell shell--wide">
+    <figure class="closing-order__image reveal" style={`--image-position:${images.rollDetail.focalPoint}`}>
+      <Image src={images.rollDetail.src} alt={images.rollDetail.alt} widths={[640, 900, 1200, 1500]} sizes="(max-width: 720px) 100vw, 55vw" quality="high" loading="lazy" decoding="async" />
+    </figure>
+    <div class="closing-order__copy reveal reveal--delay-1">
+      <p class="handwritten-ish">Hungry yet?</p>
+      <h2 id="closing-title">Go see what made today’s cut.</h2>
+      <OrderAction label="See today’s menu" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import AppetiteHero from '../components/home/AppetiteHero.astro';
+import BakeWall from '../components/home/BakeWall.astro';
+import LiveMenuHandoff from '../components/home/LiveMenuHandoff.astro';
+import ProcessStory from '../components/home/ProcessStory.astro';
+import VisitPreview from '../components/home/VisitPreview.astro';
+import ClosingOrderMoment from '../components/home/ClosingOrderMoment.astro';
+---
+
+<SiteLayout
+  title="Salty Blonde Bakery | Cinnamon Rolls & Cookies in Hyde Park Austin"
+  description="Small-batch cinnamon rolls, brown butter cookies, and rotating weekly specials baked from scratch in Hyde Park, Austin."
+>
+  <main id="main-content">
+    <AppetiteHero />
+    <BakeWall />
+    <LiveMenuHandoff />
+    <ProcessStory />
+    <VisitPreview />
+    <ClosingOrderMoment />
+  </main>
+</SiteLayout>

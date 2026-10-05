@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../../data/images';
+import OrderAction from '../site/OrderAction.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  imageId: keyof typeof images;
+  supportImageId?: keyof typeof images;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+const { eyebrow, title, body, imageId, supportImageId, ctaLabel, ctaHref, secondaryLabel, secondaryHref } = Astro.props;
+const image = images[imageId];
+const support = supportImageId ? images[supportImageId] : null;
+---
+<section class="page-photo-hero">
+  <div class="page-photo-hero__inner shell shell--wide">
+    <div class="page-photo-hero__copy reveal">
+      <p class="hero-location">{eyebrow}</p>
+      <h1 set:html={title}></h1>
+      <p class="hero-lede">{body}</p>
+      {(ctaLabel || secondaryLabel) && (
+        <div class="hero-actions">
+          {ctaLabel && <OrderAction label={ctaLabel} href={ctaHref} />}
+          {secondaryLabel && secondaryHref && <a class="text-link" href={secondaryHref}>{secondaryLabel} <span aria-hidden="true">→</span></a>}
+        </div>
+      )}
+    </div>
+
+    <div class:list={['page-photo-hero__media', !support && 'page-photo-hero__media--single']}>
+      <figure class="page-photo-hero__lead reveal" style={`--image-position:${image.focalPoint}`}>
+        <span aria-hidden="true" class="page-photo-hero__backing"></span>
+        <Image src={image.src} alt={image.alt} widths={[640, 900, 1200, 1500]} sizes="(max-width: 720px) 82vw, 44vw" quality="high" loading="eager" decoding="async" fetchpriority="high" />
+      </figure>
+      {support && (
+        <figure class="page-photo-hero__support reveal reveal--delay-1" style={`--image-position:${support.focalPoint}`}>
+          <Image src={support.src} alt={support.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 42vw, 20vw" quality="high" loading="eager" decoding="async" />
+        </figure>
+      )}
+    </div>
+  </div>
+</section>

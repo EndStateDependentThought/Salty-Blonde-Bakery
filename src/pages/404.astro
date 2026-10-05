@@ -1,0 +1,15 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import OrderAction from '../components/site/OrderAction.astro';
+---
+<SiteLayout title="Page not found | Salty Blonde Bakery" description="This page could not be found." noindex={true}>
+  <main id="main-content" class="not-found shell">
+    <p class="handwritten-ish">Well, crumb.</p>
+    <h1>That page is gone.</h1>
+    <p>Good news: the bakery is still here.</p>
+    <div class="hero-actions">
+      <a class="text-link" href="/">Back home <span aria-hidden="true">→</span></a>
+      <OrderAction label="See today’s menu" />
+    </div>
+  </main>
+</SiteLayout>

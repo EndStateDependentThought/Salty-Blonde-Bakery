@@ -1,0 +1,34 @@
+---
+import { siteConfig } from '../../config/site';
+import OrderAction from './OrderAction.astro';
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => href !== '/' && currentPath.startsWith(href.replace(/\/$/, ''));
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="site-header__inner shell shell--wide">
+    <a class="brand" href="/" aria-label="Salty Blonde Bakery home">
+      <span class="brand__primary">Salty Blonde</span>
+      <span class="brand__secondary">Bakery</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Main navigation">
+      {siteConfig.nav.map((item) => (
+        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+
+    <details class="mobile-nav">
+      <summary>Explore</summary>
+      <nav aria-label="Mobile navigation">
+        {siteConfig.nav.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+        ))}
+      </nav>
+    </details>
+
+    <OrderAction class="site-header__order" label="Order today" />
+  </div>
+</header>

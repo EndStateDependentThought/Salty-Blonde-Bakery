@@ -1,0 +1,186 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import OrderAction from '../components/site/OrderAction.astro';
+import { images } from '../data/images';
+import { businessConfig } from '../config/business';
+---
+
+<SiteLayout
+  title="Pre-Order | Salty Blonde Bakery in Hyde Park Austin"
+  description="Request a Salty Blonde Bakery pre-order for cookie dozens, cinnamon roll 4-packs, specialty bakes, meetings, parties, gifting, and larger pickup orders."
+>
+  <main id="main-content">
+    <section class="preorder-page-hero">
+      <div class="preorder-page-hero__inner shell shell--wide">
+        <div class="preorder-page-hero__copy reveal">
+          <p class="hero-location">Plan ahead · Hyde Park pickup</p>
+          <h1>More boxes.<br /><em>Same small batches.</em></h1>
+          <p class="hero-lede">Planning for a meeting, party, weekend pickup, holiday treat, or group order? Send the bakery a request and we’ll confirm availability, pickup timing, and total.</p>
+          <p class="small-note">Large pre-orders need at least {businessConfig.preorders.minimumNotice} notice. Submitting this form is a request, not a confirmed order.</p>
+          <OrderAction label="Need something today?" variant="soft" />
+        </div>
+        <div class="preorder-page-hero__media">
+          <figure class="preorder-page-hero__lead reveal reveal--delay-1" style={`--image-position:${images.packaging.focalPoint}`}>
+            <Image src={images.packaging.src} alt={images.packaging.alt} widths={[640, 900, 1200]} sizes="(max-width: 720px) 78vw, 42vw" quality="high" loading="eager" decoding="async" fetchpriority="high" />
+          </figure>
+          <figure class="preorder-page-hero__support reveal reveal--delay-2" style={`--image-position:${images.menuClassicCinnamonRoll.focalPoint}`}>
+            <Image src={images.menuClassicCinnamonRoll.src} alt={images.menuClassicCinnamonRoll.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 40vw, 19vw" quality="high" loading="eager" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="preorder-form-section" aria-labelledby="preorder-form-title">
+      <div class="preorder-form-section__inner shell shell--wide">
+        <div class="preorder-form-section__intro reveal">
+          <p class="handwritten-ish">Tell us what you need</p>
+          <h2 id="preorder-form-title">Pre-order request</h2>
+          <p>Cookies by the dozen, cinnamon rolls in 4-packs, specialty baked goods, and larger bakery orders are all fair game when production allows.</p>
+          <ol class="preorder-steps">
+            <li><strong>1.</strong><span>Send the request.</span></li>
+            <li><strong>2.</strong><span>We confirm availability, timing, and total.</span></li>
+            <li><strong>3.</strong><span>Pick it up at the Hyde Park trailer.</span></li>
+          </ol>
+        </div>
+
+        <form class="preorder-form reveal reveal--delay-1" action="/api/preorder" method="post" data-preorder-form>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>Name <em>required</em></span>
+              <input type="text" name="name" autocomplete="name" required maxlength="120" />
+            </label>
+
+            <label class="form-field">
+              <span>Email <em>required</em></span>
+              <input type="email" name="email" autocomplete="email" required maxlength="180" />
+            </label>
+
+            <label class="form-field">
+              <span>Phone</span>
+              <input type="tel" name="phone" autocomplete="tel" maxlength="40" />
+            </label>
+
+            <label class="form-field">
+              <span>Preferred pickup date <em>required</em></span>
+              <input type="date" name="pickupDate" required data-pickup-date />
+            </label>
+
+            <label class="form-field">
+              <span>Preferred pickup time</span>
+              <input type="text" name="pickupTime" placeholder="Example: around 10am" maxlength="80" />
+            </label>
+
+            <label class="form-field">
+              <span>What kind of order?</span>
+              <select name="orderType">
+                <option value="Cookies by the dozen">Cookies by the dozen</option>
+                <option value="Cinnamon roll 4-packs">Cinnamon roll 4-packs</option>
+                <option value="Specialty baked goods">Specialty baked goods</option>
+                <option value="Mixed / larger bakery order">Mixed / larger bakery order</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <label class="form-field form-field--full">
+              <span>Order details <em>required</em></span>
+              <textarea name="orderDetails" rows="6" required maxlength="2400" placeholder="Tell us what you’re hoping to order and roughly how many people you’re feeding."></textarea>
+            </label>
+
+            <label class="form-field form-field--full">
+              <span>Event, company, or occasion</span>
+              <input type="text" name="occasion" maxlength="180" placeholder="Optional" />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span>Allergy / dietary notes</span>
+              <textarea name="allergyNotes" rows="3" maxlength="1200" placeholder="Our kitchen may handle common allergens. Include anything important for us to know."></textarea>
+            </label>
+
+            <fieldset class="form-field form-field--full form-fieldset">
+              <legend>Fulfillment</legend>
+              <label><input type="radio" name="fulfillment" value="Pickup" checked /> Pickup at the Hyde Park trailer</label>
+              <label><input type="radio" name="fulfillment" value="Ask about delivery" /> Ask whether delivery is possible</label>
+            </fieldset>
+
+            <label class="form-field form-field--full">
+              <span>Anything else?</span>
+              <textarea name="notes" rows="4" maxlength="1600"></textarea>
+            </label>
+
+            <label class="form-honeypot" aria-hidden="true">
+              Website
+              <input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+
+          <label class="form-confirmation">
+            <input type="checkbox" name="confirmation" value="yes" required />
+            <span>I understand this is a request and is not confirmed until Salty Blonde replies with availability, timing, and total.</span>
+          </label>
+
+          <div class="form-submit-row">
+            <button class="order-action" type="submit" data-submit-button><span>Send pre-order request</span><span aria-hidden="true">→</span></button>
+            <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="preorder-faq">
+      <div class="preorder-faq__inner shell shell--wide">
+        <div class="reveal">
+          <p class="handwritten-ish">Before you send it</p>
+          <h2>A few useful things.</h2>
+        </div>
+        <div class="preorder-faq__items">
+          <article class="reveal"><h3>How far ahead?</h3><p>Large pre-orders require at least {businessConfig.preorders.minimumNotice} notice.</p></article>
+          <article class="reveal reveal--delay-1"><h3>Is the form a confirmation?</h3><p>No. We’ll reply to confirm availability, pickup time, and total.</p></article>
+          <article class="reveal reveal--delay-2"><h3>What counts as a pre-order?</h3><p>If you’re ordering for a group, event, office, party, or larger pickup, you’re in the right place.</p></article>
+          <article class="reveal"><h3>Need delivery?</h3><p>Pre-orders are designed for pickup. Ask in the form if delivery would materially help and we’ll tell you what’s possible.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<script>
+  const form = document.querySelector('[data-preorder-form]');
+  const status = document.querySelector('[data-form-status]');
+  const submitButton = document.querySelector('[data-submit-button]');
+  const pickupDate = document.querySelector('[data-pickup-date]');
+
+  if (pickupDate instanceof HTMLInputElement) {
+    const earliest = new Date();
+    earliest.setDate(earliest.getDate() + 2);
+    pickupDate.min = earliest.toISOString().slice(0, 10);
+  }
+
+  if (form instanceof HTMLFormElement && status instanceof HTMLElement && submitButton instanceof HTMLButtonElement) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      submitButton.disabled = true;
+      status.textContent = 'Sending…';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(payload.message || 'We could not send the request.');
+
+        form.reset();
+        status.textContent = 'Request sent. The bakery will follow up to confirm details.';
+      } catch (error) {
+        status.textContent = error instanceof Error
+          ? `${error.message} You can also email saltyblondebakery@icloud.com.`
+          : 'We could not send the request. Please email saltyblondebakery@icloud.com.';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  }
+</script>

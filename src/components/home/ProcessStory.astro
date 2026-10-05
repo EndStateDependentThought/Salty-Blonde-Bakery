@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../../data/images';
+---
+
+<section class="process-story" id="made-here" aria-labelledby="process-title">
+  <div class="process-story__inner shell shell--wide">
+    <figure class="process-story__lead reveal" style={`--image-position:${images.processRolls.focalPoint}`}>
+      <Image src={images.processRolls.src} alt={images.processRolls.alt} widths={[640, 900, 1200, 1500]} sizes="(max-width: 720px) 100vw, 56vw" quality="high" loading="lazy" decoding="async" />
+    </figure>
+
+    <div class="process-story__side">
+      <div class="process-story__copy reveal reveal--delay-1">
+        <p class="handwritten-ish">Made here</p>
+        <h2 id="process-title">The good part starts before the box.</h2>
+        <p>Baked from scratch in small batches — trays on the counter, dough by hand, frosting while it’s fresh.</p>
+      </div>
+
+      <figure class="process-story__cookies reveal" style={`--image-position:${images.processCookies.focalPoint}`}>
+        <Image src={images.processCookies.src} alt={images.processCookies.alt} widths={[480, 720, 960]} sizes="(max-width: 720px) 100vw, 30vw" quality="high" loading="lazy" decoding="async" />
+      </figure>
+
+      <div class="process-story__mini">
+        <figure class="process-story__finish reveal reveal--delay-1" style={`--image-position:${images.crumbCookie.focalPoint}`}>
+          <span class="process-story__finish-backing" aria-hidden="true"></span>
+          <Image src={images.crumbCookie.src} alt={images.crumbCookie.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 46vw, 16vw" quality="high" loading="lazy" decoding="async" />
+        </figure>
+
+        <figure class="process-story__boxed reveal reveal--delay-2" style={`--image-position:${images.sprinkleRoll.focalPoint}`}>
+          <Image src={images.sprinkleRoll.src} alt={images.sprinkleRoll.alt} widths={[420, 640, 860]} sizes="(max-width: 720px) 46vw, 19vw" quality="high" loading="lazy" decoding="async" />
+          <figcaption>Made here. Boxed here. Hyde Park.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

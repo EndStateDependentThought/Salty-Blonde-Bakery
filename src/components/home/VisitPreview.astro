@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../../data/images';
+import { businessConfig } from '../../config/business';
+---
+
+<section class="visit-preview" aria-labelledby="visit-preview-title">
+  <div class="visit-preview__inner shell shell--wide">
+    <div class="visit-preview__copy reveal">
+      <p class="handwritten-ish">Hyde Park, Austin</p>
+      <h2 id="visit-preview-title">Come find the lavender boxes in real life.</h2>
+      <p>{businessConfig.address.street}, {businessConfig.address.city}. {businessConfig.address.note}</p>
+
+      <dl class="hours-list hours-list--compact">
+        {businessConfig.hours.map((row) => (
+          <div><dt>{row.label}</dt><dd>{row.display}</dd></div>
+        ))}
+      </dl>
+
+      <div class="inline-actions">
+        <a class="order-action" href={businessConfig.directionsUrl} target="_blank" rel="noreferrer">
+          <span>Get directions</span><span aria-hidden="true">↗</span>
+        </a>
+        <a class="text-link" href="/visit/">Visit details <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <figure class="visit-preview__trailer reveal reveal--delay-1" style={`--image-position:${images.trailer.focalPoint}`}>
+      <Image src={images.trailer.src} alt={images.trailer.alt} widths={[640, 900, 1200, 1500]} sizes="(max-width: 720px) 100vw, 54vw" quality="high" loading="lazy" decoding="async" />
+    </figure>
+
+    <figure class="visit-preview__accent reveal reveal--delay-2" style={`--image-position:${images.customersOutside.focalPoint}`}>
+      <Image src={images.customersOutside.src} alt={images.customersOutside.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 42vw, 18vw" quality="high" loading="lazy" decoding="async" />
+    </figure>
+  </div>
+</section>

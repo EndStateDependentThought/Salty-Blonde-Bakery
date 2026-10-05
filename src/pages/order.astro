@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import LiveMenuLinks from '../components/shared/LiveMenuLinks.astro';
+import { images } from '../data/images';
+import { businessConfig } from '../config/business';
+---
+
+<SiteLayout
+  title="Order Salty Blonde Bakery | Live Menu & Delivery"
+  description="Order Salty Blonde Bakery from the current live menu on Uber Eats or DoorDash, or visit the bakery in Hyde Park, Austin."
+>
+  <main id="main-content">
+    <section class="order-page">
+      <div class="order-page__inner shell shell--wide">
+        <div class="order-page__copy reveal">
+          <p class="hero-location">What’s baking today?</p>
+          <h1>Pick the live menu.<br /><em>We’ll handle the butter.</em></h1>
+          <p class="hero-lede">The lineup changes with the week and the batch. Uber Eats and DoorDash carry the current menu, prices, and availability.</p>
+          <LiveMenuLinks />
+          <p class="small-note">Prefer to come by? We’re at {businessConfig.address.street} in Hyde Park. <a href="/visit/">See hours + directions.</a></p>
+        </div>
+
+        <div class="order-page__images">
+          <figure class="order-page__lead reveal" style={`--image-position:${images.rollDetail.focalPoint}`}>
+            <Image src={images.rollDetail.src} alt={images.rollDetail.alt} widths={[640, 900, 1200]} sizes="(max-width: 720px) 78vw, 42vw" quality="high" loading="eager" decoding="async" fetchpriority="high" />
+          </figure>
+          <figure class="order-page__cookie reveal reveal--delay-1" style={`--image-position:${images.crumbCookieTear.focalPoint}`}>
+            <Image src={images.crumbCookieTear.src} alt={images.crumbCookieTear.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 42vw, 20vw" quality="high" loading="eager" decoding="async" />
+          </figure>
+          <figure class="order-page__special reveal reveal--delay-2" style={`--image-position:${images.amberRoll.focalPoint}`}>
+            <Image src={images.amberRoll.src} alt={images.amberRoll.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 38vw, 18vw" quality="high" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

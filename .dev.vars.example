@@ -1,0 +1,6 @@
+# Local reference only. Do not commit real secrets.
+# Cloudflare Pages dashboard -> Settings -> Variables and Secrets
+CF_ACCOUNT_ID=your_cloudflare_account_id
+CF_EMAIL_API_TOKEN=your_email_sending_api_token
+PREORDER_FROM=preorders@saltyblondebakery.com
+PREORDER_TO=saltyblondebakery@icloud.com

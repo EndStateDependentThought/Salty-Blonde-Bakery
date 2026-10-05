@@ -1,0 +1,31 @@
+---
+import { orderingConfig } from '../../config/ordering';
+
+interface Props {
+  class?: string;
+  label?: string;
+  variant?: 'solid' | 'soft';
+  href?: string;
+  external?: boolean;
+}
+
+const {
+  class: className = '',
+  label = 'Order today',
+  variant = 'solid',
+  href = orderingConfig.orderRoute,
+  external = false,
+} = Astro.props;
+---
+
+<a
+  class:list={['order-action', `order-action--${variant}`, className]}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noreferrer' : undefined}
+>
+  <span>{label}</span>
+  <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16">
+    <path d="M4 10h11M11 6l4 4-4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" />
+  </svg>
+</a>

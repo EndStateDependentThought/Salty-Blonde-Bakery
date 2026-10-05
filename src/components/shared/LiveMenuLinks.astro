@@ -1,0 +1,16 @@
+---
+import { orderingConfig } from '../../config/ordering';
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<div class:list={['live-menu-links', compact && 'live-menu-links--compact']}>
+  {orderingConfig.destinations.map((destination, index) => (
+    <a class:list={['delivery-link', index === 0 && 'delivery-link--primary']} href={destination.url} target="_blank" rel="noreferrer">
+      <span>
+        <strong>{destination.name}</strong>
+        <small>{destination.note}</small>
+      </span>
+      <span class="delivery-link__arrow" aria-hidden="true">↗</span>
+    </a>
+  ))}
+</div>

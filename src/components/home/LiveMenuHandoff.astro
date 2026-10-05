@@ -1,0 +1,25 @@
+---
+import { orderingConfig } from '../../config/ordering';
+---
+
+<section class="live-menu" id="order-today" aria-labelledby="live-menu-title">
+  <div class="live-menu__inner shell shell--wide">
+    <div class="live-menu__copy reveal">
+      <p class="handwritten-ish">What’s baking right now?</p>
+      <h2 id="live-menu-title">Today’s menu lives where you order it.</h2>
+      <p>The weekly lineup moves fast. Check the live delivery menus for current availability, then pick your favorite.</p>
+    </div>
+
+    <div class="live-menu__links reveal reveal--delay-1">
+      {orderingConfig.destinations.map((destination, index) => (
+        <a class:list={['delivery-link', index === 0 && 'delivery-link--primary']} href={destination.url} target="_blank" rel="noreferrer">
+          <span>
+            <strong>{destination.name}</strong>
+            <small>{destination.note}</small>
+          </span>
+          <span class="delivery-link__arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
