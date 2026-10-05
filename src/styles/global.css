@@ -631,3 +631,77 @@ h2 { margin-bottom: 1rem; font-size: clamp(2.65rem, 4.25vw, 4.6rem); line-height
   .preorder-faq__items { grid-template-columns: 1fr; }
   .preorder-faq__items article, .preorder-faq__items article:nth-child(even) { padding: 1.25rem 0; border-left: 0; }
 }
+
+/* --- v1.0.1: review proof --- */
+.review-proof {
+  padding: clamp(4.5rem, 6.5vw, 7rem) 0;
+  background: var(--lavender-wash);
+  border-top: 1px solid color-mix(in srgb, var(--lavender-deep) 18%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--lavender-deep) 18%, transparent);
+}
+.review-proof__inner {
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  gap: clamp(2.5rem, 7vw, 8rem);
+  align-items: end;
+}
+.review-proof__copy h2 {
+  max-width: 9ch;
+  margin-bottom: 1rem;
+}
+.review-proof__copy > p:not(.handwritten-ish) {
+  max-width: 34rem;
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: 1.04rem;
+}
+.review-proof__platforms {
+  display: grid;
+  border-top: 1px solid var(--rule);
+}
+.review-proof__link {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem .15rem .95rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+  transition: padding-left 170ms ease, background-color 170ms ease;
+}
+.review-proof__link:hover {
+  padding-left: .45rem;
+  background: color-mix(in srgb, var(--cream) 48%, transparent);
+}
+.review-proof__platform {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-variation-settings: 'wght' 560;
+  letter-spacing: -.02em;
+}
+.review-proof__rating {
+  font-weight: 760;
+  white-space: nowrap;
+}
+.review-proof__rating > span {
+  color: var(--lavender-deep);
+}
+.review-proof__arrow {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+.review-proof__note {
+  margin: .85rem 0 0;
+  color: var(--ink-soft);
+  font-size: .82rem;
+}
+
+@media (max-width: 720px) {
+  .review-proof { padding: 4rem 0; }
+  .review-proof__inner { display: block; }
+  .review-proof__copy { margin-bottom: 2rem; }
+  .review-proof__copy h2 { max-width: 10ch; }
+  .review-proof__link { gap: .7rem; }
+  .review-proof__platform { font-size: 1.4rem; }
+}

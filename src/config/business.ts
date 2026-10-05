@@ -20,7 +20,7 @@ export const businessConfig = {
   phoneDisplay: '(626) 641-6609',
   phoneHref: '+16266416609',
   instagramUrl: 'https://www.instagram.com/the.saltyblondebakery/',
-  directionsUrl: 'https://www.google.com/maps/dir//4215%2BAvenue%2BH%2C%2BAustin%2C%2BTX%2B78751/%4030.2907392%2C-97.7338368%2C14z/data%3D%214m8%214m7%211m0%211m5%211m1%211s0xa2a5bc384c58b187%3A0x3c9b53bcbcff7266%212m2%211d-97.726857%212d30.304786',
+  directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=4215%20Avenue%20H%2C%20Austin%2C%20TX%2078751&travelmode=driving',
   preorders: {
     supported: true,
     minimumNotice: '48 hours',

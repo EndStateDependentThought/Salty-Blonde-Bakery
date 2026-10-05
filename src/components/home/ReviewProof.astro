@@ -1,0 +1,28 @@
+---
+import { reviewPlatforms } from '../../data/reviews';
+---
+
+<section class="review-proof" aria-labelledby="review-proof-title">
+  <div class="review-proof__inner shell shell--wide">
+    <div class="review-proof__copy reveal">
+      <p class="handwritten-ish">Austin has been very kind to us.</p>
+      <h2 id="review-proof-title">People keep saying very nice things.</h2>
+      <p>
+        From neighborhood regulars to delivery orders, Salty Blonde has earned standout reviews across the places people actually use to find us.
+      </p>
+    </div>
+
+    <div class="review-proof__platforms reveal reveal--delay-1" aria-label="Salty Blonde review platforms">
+      {reviewPlatforms.map((platform) => (
+        <a class="review-proof__link" href={platform.href} target="_blank" rel="noreferrer">
+          <span class="review-proof__platform">{platform.name}</span>
+          <span class="review-proof__rating" aria-label={`${platform.rating} out of 5 stars`}>
+            <span aria-hidden="true">★</span> {platform.rating}
+          </span>
+          <span class="review-proof__arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+      <p class="review-proof__note">Ratings are a current snapshot and may change as new reviews come in.</p>
+    </div>
+  </div>
+</section>
