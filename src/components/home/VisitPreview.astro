@@ -26,11 +26,27 @@ import { businessConfig } from '../../config/business';
     </div>
 
     <figure class="visit-preview__trailer reveal reveal--delay-1" style={`--image-position:${images.trailer.focalPoint}`}>
-      <Image src={images.trailer.src} alt={images.trailer.alt} widths={[640, 900, 1200, 1500]} sizes="(max-width: 720px) 100vw, 54vw" quality="high" loading="lazy" decoding="async" />
-    </figure>
-
-    <figure class="visit-preview__accent reveal reveal--delay-2" style={`--image-position:${images.glazedRollHand.focalPoint}`}>
-      <Image src={images.glazedRollHand.src} alt={images.glazedRollHand.alt} widths={[360, 520, 720]} sizes="(max-width: 720px) 42vw, 18vw" quality="high" loading="lazy" decoding="async" />
+      <Image
+        src={images.trailer.src}
+        alt={images.trailer.alt}
+        widths={[640, 900, 1200, 1500]}
+        sizes="(max-width: 720px) 100vw, 54vw"
+        quality="high"
+        loading="lazy"
+        decoding="async"
+      />
     </figure>
   </div>
 </section>
+
+<style>
+  .visit-preview {
+    padding-top: clamp(2.75rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 720px) {
+    .visit-preview {
+      padding-top: 2.75rem;
+    }
+  }
+</style>
