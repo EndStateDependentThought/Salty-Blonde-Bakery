@@ -31,9 +31,29 @@ import crumbCookiePair from '../assets/images/expanded/crumb-cookie-pair.jpg';
 import crumbCookieTear from '../assets/images/expanded/crumb-cookie-tear.jpg';
 import pecanSlab from '../assets/images/expanded/pecan-slab.jpg';
 import customersOutside from '../assets/images/expanded/customers-outside.jpg';
+import applePieCrumbleRoll from '../assets/images/seasonal/apple-pie-crumble-roll.jpg';
+import appleCiderCookie from '../assets/images/seasonal/apple-cider-cookie.jpg';
+import pumpkinSpiceCinnamonRoll from '../assets/images/seasonal/pumpkin-spice-cinnamon-roll.jpg';
+import punkNPieCookie from '../assets/images/seasonal/punk-n-pie-cookie.jpg';
 import type { BakeryImage } from '../types/content';
 
 export const images = {
+  applePieCrumbleRoll: {
+    id: 'apple-pie-crumble-roll', sourceFilename: 'IMG_3409(1).jpeg', src: applePieCrumbleRoll,
+    alt: 'Apple Pie Crumble Roll topped with a generous cinnamon crumble in a lavender Salty Blonde Bakery box.', focalPoint: '50% 48%', role: 'product',
+  },
+  appleCiderCookie: {
+    id: 'apple-cider-cookie', sourceFilename: 'IMG_3356.jpeg', src: appleCiderCookie,
+    alt: 'Apple Cider Cookie with a sugar-dusted top in a lavender Salty Blonde Bakery box.', focalPoint: '50% 47%', role: 'product',
+  },
+  pumpkinSpiceCinnamonRoll: {
+    id: 'pumpkin-spice-cinnamon-roll', sourceFilename: 'IMG_3305.jpeg', src: pumpkinSpiceCinnamonRoll,
+    alt: 'Pumpkin Spice Cinnamon Roll split open to show soft pumpkin-spice layers under glossy spiced icing in a lavender Salty Blonde Bakery box.', focalPoint: '48% 44%', role: 'product',
+  },
+  punkNPieCookie: {
+    id: 'punk-n-pie-cookie', sourceFilename: 'IMG_3242.jpeg', src: punkNPieCookie,
+    alt: 'Punk’n Pie Cookie with a crackled sugar-dusted top held above a lavender Salty Blonde Bakery box.', focalPoint: '50% 44%', role: 'product',
+  },
   menuClassicCinnamonRoll: {
     id: 'menu-classic-cinnamon-roll', sourceFilename: 'Bake(2)/IMG_0934', src: menuClassicCinnamonRoll,
     alt: 'Classic Salty Blonde cinnamon roll with simple icing in a bakery box.', focalPoint: '50% 52%', role: 'product',

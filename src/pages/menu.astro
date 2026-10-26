@@ -4,6 +4,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import PagePhotoHero from '../components/shared/PagePhotoHero.astro';
 import LiveMenuLinks from '../components/shared/LiveMenuLinks.astro';
 import OrderAction from '../components/site/OrderAction.astro';
+import SeasonalFeature from '../components/shared/SeasonalFeature.astro';
 import { images } from '../data/images';
 import { menuItems } from '../data/menu';
 import { businessConfig } from '../config/business';
@@ -13,8 +14,8 @@ const rotatingImages = [images.fruitGlazeRoll, images.sprinkleRoll, images.redCo
 ---
 
 <SiteLayout
-  title="Menu | Cinnamon Rolls & Cookies in Austin | Salty Blonde Bakery"
-  description="Browse Salty Blonde Bakery cinnamon rolls, brown butter cookies, rotating specialty flavors, sampler packs, and pre-orders in Hyde Park, Austin."
+  title="Bakery Menu | Cinnamon Rolls & Cookies in Austin | Salty Blonde"
+  description="Browse the Salty Blonde Bakery menu in Austin: fresh cinnamon rolls, brown butter cookies, fall desserts, rotating specials, sampler packs, and pre-orders in Hyde Park."
 >
   <main id="main-content">
     <PagePhotoHero
@@ -39,6 +40,8 @@ const rotatingImages = [images.fruitGlazeRoll, images.sprinkleRoll, images.redCo
         <LiveMenuLinks compact={true} />
       </div>
     </section>
+
+    <SeasonalFeature compact={true} />
 
     <section class="classics-section" id="classics" aria-labelledby="classics-title">
       <div class="classics-section__heading shell shell--wide reveal">

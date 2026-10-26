@@ -9,14 +9,14 @@ import { businessConfig } from '../config/business';
 ---
 
 <SiteLayout
-  title="Visit | Salty Blonde Bakery in Hyde Park Austin"
-  description="Visit Salty Blonde Bakery at 4215 Ave H in Hyde Park, Austin. See current hours, directions, contact details, and ordering options."
+  title="Austin Bakery in Hyde Park | Hours & Directions | Salty Blonde"
+  description="Visit Salty Blonde Bakery, a small-batch Austin bakery at 4215 Ave H in Hyde Park. Get hours, directions, cinnamon rolls, cookies, and current ordering options."
 >
   <main id="main-content">
     <PagePhotoHero
       eyebrow="Hyde Park · Austin"
       title="The trailer is small.<br /><em>The rolls are not.</em>"
-      body="Find Salty Blonde at 4215 Ave H in the parking lot across from Fresh Plus. Come by for the bakery in person, or check the live menu before you head over."
+      body="Salty Blonde is a small-batch Austin bakery at 4215 Ave H in Hyde Park, in the parking lot across from Fresh Plus. Come by for cinnamon rolls, cookies, and rotating desserts, or check the live menu before you head over."
       imageId="trailer"
       supportImageId="glazedRollHand"
       ctaLabel="Get directions"
@@ -31,6 +31,7 @@ import { businessConfig } from '../config/business';
           <p class="handwritten-ish">Come by</p>
           <h2 id="visit-details-title">{businessConfig.address.street}<br />{businessConfig.address.city}, {businessConfig.address.region} {businessConfig.address.postalCode}</h2>
           <p>{businessConfig.address.note}</p>
+          <p class="small-note">Looking for a bakery in Austin? Start with our <a href="/cinnamon-rolls-austin/">fresh cinnamon rolls</a> and <a href="/cookies-austin/">brown butter cookies</a>, then check the live menu for today’s rotating specials.</p>
           <a class="order-action" href={businessConfig.directionsUrl} target="_blank" rel="noreferrer"><span>Get directions</span><span aria-hidden="true">↗</span></a>
         </div>
 

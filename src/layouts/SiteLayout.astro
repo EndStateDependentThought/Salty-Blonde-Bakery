@@ -23,6 +23,7 @@ const {
 
 const canonical = new URL(Astro.url.pathname, businessConfig.siteUrl).toString();
 const imageUrl = new URL(image, businessConfig.siteUrl).toString();
+const isHome = Astro.url.pathname === '/';
 const openingHoursSpecification = businessConfig.hours
   .filter((row) => row.opens && row.closes)
   .map((row) => ({
@@ -35,12 +36,16 @@ const openingHoursSpecification = businessConfig.hours
 const bakerySchema = {
   '@context': 'https://schema.org',
   '@type': 'Bakery',
+  '@id': `${businessConfig.siteUrl}/#bakery`,
   name: businessConfig.name,
   url: businessConfig.siteUrl,
   image: imageUrl,
   description: businessConfig.description,
   telephone: businessConfig.phoneHref,
   email: businessConfig.email,
+  menu: new URL('/menu/', businessConfig.siteUrl).toString(),
+  hasMap: businessConfig.directionsUrl,
+  areaServed: { '@type': 'City', name: 'Austin' },
   address: {
     '@type': 'PostalAddress',
     streetAddress: businessConfig.address.street,
@@ -51,6 +56,15 @@ const bakerySchema = {
   },
   openingHoursSpecification,
   sameAs: [businessConfig.instagramUrl],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${businessConfig.siteUrl}/#website`,
+  name: businessConfig.name,
+  alternateName: businessConfig.shortName,
+  url: `${businessConfig.siteUrl}/`,
 };
 ---
 
@@ -78,6 +92,7 @@ const bakerySchema = {
 
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(bakerySchema)}></script>
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>}
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>

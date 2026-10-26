@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../../data/images';
+import { seasonalFeature } from '../../data/seasonal';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const items = seasonalFeature.items.map((item) => ({
+  ...item,
+  image: images[item.imageId as keyof typeof images],
+}));
+---
+
+{seasonalFeature.active && (
+  <section class:list={['seasonal-feature', compact && 'seasonal-feature--compact']} aria-labelledby={compact ? 'seasonal-menu-title' : 'seasonal-home-title'}>
+    <div class="seasonal-feature__inner shell shell--wide">
+      <header class="seasonal-feature__intro reveal">
+        <div>
+          <p class="seasonal-feature__eyebrow">{seasonalFeature.eyebrow}</p>
+          <h2 id={compact ? 'seasonal-menu-title' : 'seasonal-home-title'}>{seasonalFeature.title}</h2>
+        </div>
+        <div class="seasonal-feature__copy">
+          <p>{seasonalFeature.description}</p>
+          <a class="text-link" href="/order/">See what’s baking today <span aria-hidden="true">→</span></a>
+        </div>
+      </header>
+
+      <div class="seasonal-feature__grid" aria-label="Fall and Thanksgiving bakery specials">
+        {items.map((item, index) => (
+          <article class:list={['seasonal-card', `seasonal-card--${index + 1}`, 'reveal', index > 0 && 'reveal--delay-1']}>
+            <figure class="seasonal-card__image" style={`--image-position:${item.image.focalPoint}`}>
+              <Image
+                src={item.image.src}
+                alt={item.image.alt}
+                widths={[420, 640, 900, 1152]}
+                sizes={index === 0 ? '(max-width: 720px) 100vw, 42vw' : '(max-width: 720px) 50vw, 21vw'}
+                quality="high"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="seasonal-card__caption">
+              <p>{item.kind}</p>
+              <h3>{item.name}</h3>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="seasonal-feature__note reveal">{seasonalFeature.note}</p>
+    </div>
+  </section>
+)}
+
+<style>
+  .seasonal-feature {
+    --fall-ink: #4a3024;
+    --fall-cider: #b96f42;
+    --fall-oat: #f1dfc6;
+    position: relative;
+    overflow: clip;
+    padding: clamp(4.5rem, 7vw, 7.5rem) 0;
+    background:
+      radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--lavender) 24%, transparent) 0 13rem, transparent 13.1rem),
+      linear-gradient(135deg, #f8e9d3 0%, var(--paper) 52%, #f4e5dc 100%);
+    border-block: 1px solid color-mix(in srgb, var(--fall-cider) 25%, transparent);
+  }
+
+  .seasonal-feature::after {
+    content: '';
+    position: absolute;
+    right: -7rem;
+    bottom: -8rem;
+    width: 22rem;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--fall-cider) 24%, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .seasonal-feature__inner { position: relative; z-index: 1; }
+  .seasonal-feature__intro {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3.75rem);
+  }
+  .seasonal-feature__eyebrow {
+    width: fit-content;
+    margin: 0 0 .85rem;
+    padding: .42rem .7rem .38rem;
+    border: 1px solid color-mix(in srgb, var(--fall-cider) 48%, var(--ink));
+    border-radius: 999px;
+    color: var(--fall-ink);
+    font-size: .78rem;
+    font-weight: 780;
+    letter-spacing: .12em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .seasonal-feature h2 { max-width: 9ch; margin-bottom: 0; color: var(--fall-ink); }
+  .seasonal-feature__copy { max-width: 36rem; color: var(--ink-soft); }
+  .seasonal-feature__copy p { margin-bottom: 1.15rem; font-size: 1.04rem; }
+
+  .seasonal-feature__grid {
+    display: grid;
+    grid-template-columns: 1.12fr .88fr .88fr;
+    grid-template-rows: repeat(2, minmax(240px, 1fr));
+    gap: clamp(.75rem, 1.25vw, 1.15rem);
+  }
+  .seasonal-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--cream);
+    border: 1px solid color-mix(in srgb, var(--fall-cider) 18%, var(--rule));
+  }
+  .seasonal-card--1 { grid-row: 1 / 3; }
+  .seasonal-card__image { height: 100%; min-height: 0; margin: 0; }
+  .seasonal-card--1 .seasonal-card__image { min-height: 600px; }
+  .seasonal-card:not(.seasonal-card--1) .seasonal-card__image { min-height: 290px; }
+  .seasonal-card__caption {
+    position: absolute;
+    right: .8rem;
+    bottom: .8rem;
+    left: .8rem;
+    padding: .8rem .9rem .75rem;
+    background: color-mix(in srgb, var(--cream) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(56,39,32,.12);
+  }
+  .seasonal-card__caption p {
+    margin: 0 0 .18rem;
+    color: var(--fall-cider);
+    font-size: .72rem;
+    font-weight: 760;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .seasonal-card__caption h3 { margin: 0; font-size: clamp(1.25rem, 1.7vw, 1.65rem); line-height: 1.02; }
+  .seasonal-feature__note { max-width: 44rem; margin: 1rem 0 0 auto; color: var(--ink-soft); font-size: .84rem; text-align: right; }
+
+  .seasonal-feature--compact { padding-top: clamp(4rem, 6vw, 6rem); padding-bottom: clamp(4rem, 6vw, 6rem); }
+  .seasonal-feature--compact .seasonal-feature__grid { grid-template-rows: repeat(2, minmax(210px, 1fr)); }
+  .seasonal-feature--compact .seasonal-card--1 .seasonal-card__image { min-height: 520px; }
+  .seasonal-feature--compact .seasonal-card:not(.seasonal-card--1) .seasonal-card__image { min-height: 250px; }
+
+  @media (max-width: 900px) {
+    .seasonal-feature__intro { grid-template-columns: 1fr; gap: 1.2rem; }
+    .seasonal-feature h2 { max-width: 11ch; }
+    .seasonal-feature__grid { grid-template-columns: 1.15fr .85fr; grid-template-rows: repeat(3, minmax(220px, auto)); }
+    .seasonal-card--1 { grid-row: 1 / 3; }
+    .seasonal-card--4 { grid-column: 1 / 3; }
+    .seasonal-card--1 .seasonal-card__image { min-height: 560px; }
+    .seasonal-card--4 .seasonal-card__image { height: 310px; }
+  }
+
+  @media (max-width: 620px) {
+    .seasonal-feature { padding: 4rem 0; }
+    .seasonal-feature__grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: .65rem; }
+    .seasonal-card--1 { grid-column: 1 / 3; grid-row: auto; }
+    .seasonal-card--4 { grid-column: auto; }
+    .seasonal-card--1 .seasonal-card__image { min-height: 0; height: auto; aspect-ratio: 4 / 5; }
+    .seasonal-card:not(.seasonal-card--1) .seasonal-card__image,
+    .seasonal-card--4 .seasonal-card__image { min-height: 0; height: auto; aspect-ratio: 4 / 5; }
+    .seasonal-card__caption { right: .45rem; bottom: .45rem; left: .45rem; padding: .62rem .66rem .58rem; }
+    .seasonal-card__caption p { font-size: .64rem; }
+    .seasonal-card__caption h3 { font-size: 1.02rem; }
+    .seasonal-feature__note { text-align: left; }
+  }
+</style>

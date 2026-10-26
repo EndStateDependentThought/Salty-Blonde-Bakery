@@ -6,12 +6,12 @@ const doorDashUrl = orderingConfig.destinations.find((destination) => destinatio
 /**
  * Review ratings are intentionally a lightweight marketing snapshot rather than
  * a live API integration. Update these occasionally when the public ratings move.
- * Snapshot checked October 2026.
+ * Snapshot checked October 26, 2026.
  */
 export const reviewPlatforms = [
   {
     name: 'Google',
-    rating: '4.9',
+    rating: '5.0',
     href: 'https://www.google.com/maps/search/?api=1&query=Salty%20Blonde%20Bakery%2C%204215%20Avenue%20H%2C%20Austin%2C%20TX%2078751',
   },
   {
@@ -21,12 +21,12 @@ export const reviewPlatforms = [
   },
   {
     name: 'Uber Eats',
-    rating: '4.9',
+    rating: '4.8',
     href: uberEatsUrl,
   },
   {
     name: 'DoorDash',
-    rating: '4.9',
+    rating: '4.8',
     href: doorDashUrl,
   },
 ] as const;
