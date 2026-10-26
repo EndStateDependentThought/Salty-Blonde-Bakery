@@ -36,7 +36,7 @@ const items = seasonalFeature.items.map((item) => ({
                 src={item.image.src}
                 alt={item.image.alt}
                 widths={[420, 640, 900, 1152]}
-                sizes={index === 0 ? '(max-width: 720px) 100vw, 42vw' : '(max-width: 720px) 50vw, 21vw'}
+                sizes="(max-width: 620px) 100vw, 50vw"
                 quality="high"
                 loading="lazy"
                 decoding="async"
@@ -108,21 +108,22 @@ const items = seasonalFeature.items.map((item) => ({
 
   .seasonal-feature__grid {
     display: grid;
-    grid-template-columns: 1.12fr .88fr .88fr;
-    grid-template-rows: repeat(2, minmax(240px, 1fr));
-    gap: clamp(.75rem, 1.25vw, 1.15rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(.8rem, 1.4vw, 1.35rem);
   }
   .seasonal-card {
     position: relative;
     min-width: 0;
     overflow: hidden;
+    aspect-ratio: 1 / 1;
     background: var(--cream);
     border: 1px solid color-mix(in srgb, var(--fall-cider) 18%, var(--rule));
   }
-  .seasonal-card--1 { grid-row: 1 / 3; }
-  .seasonal-card__image { height: 100%; min-height: 0; margin: 0; }
-  .seasonal-card--1 .seasonal-card__image { min-height: 600px; }
-  .seasonal-card:not(.seasonal-card--1) .seasonal-card__image { min-height: 290px; }
+  .seasonal-card__image {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
   .seasonal-card__caption {
     position: absolute;
     right: .8rem;
@@ -145,31 +146,34 @@ const items = seasonalFeature.items.map((item) => ({
   .seasonal-feature__note { max-width: 44rem; margin: 1rem 0 0 auto; color: var(--ink-soft); font-size: .84rem; text-align: right; }
 
   .seasonal-feature--compact { padding-top: clamp(4rem, 6vw, 6rem); padding-bottom: clamp(4rem, 6vw, 6rem); }
-  .seasonal-feature--compact .seasonal-feature__grid { grid-template-rows: repeat(2, minmax(210px, 1fr)); }
-  .seasonal-feature--compact .seasonal-card--1 .seasonal-card__image { min-height: 520px; }
-  .seasonal-feature--compact .seasonal-card:not(.seasonal-card--1) .seasonal-card__image { min-height: 250px; }
+  .seasonal-feature--compact .seasonal-card { aspect-ratio: 4 / 3; }
 
   @media (max-width: 900px) {
     .seasonal-feature__intro { grid-template-columns: 1fr; gap: 1.2rem; }
     .seasonal-feature h2 { max-width: 11ch; }
-    .seasonal-feature__grid { grid-template-columns: 1.15fr .85fr; grid-template-rows: repeat(3, minmax(220px, auto)); }
-    .seasonal-card--1 { grid-row: 1 / 3; }
-    .seasonal-card--4 { grid-column: 1 / 3; }
-    .seasonal-card--1 .seasonal-card__image { min-height: 560px; }
-    .seasonal-card--4 .seasonal-card__image { height: 310px; }
+    .seasonal-card { aspect-ratio: 1 / 1; }
+    .seasonal-feature--compact .seasonal-card { aspect-ratio: 1 / 1; }
   }
 
   @media (max-width: 620px) {
-    .seasonal-feature { padding: 4rem 0; }
-    .seasonal-feature__grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: .65rem; }
-    .seasonal-card--1 { grid-column: 1 / 3; grid-row: auto; }
-    .seasonal-card--4 { grid-column: auto; }
-    .seasonal-card--1 .seasonal-card__image { min-height: 0; height: auto; aspect-ratio: 4 / 5; }
-    .seasonal-card:not(.seasonal-card--1) .seasonal-card__image,
-    .seasonal-card--4 .seasonal-card__image { min-height: 0; height: auto; aspect-ratio: 4 / 5; }
-    .seasonal-card__caption { right: .45rem; bottom: .45rem; left: .45rem; padding: .62rem .66rem .58rem; }
-    .seasonal-card__caption p { font-size: .64rem; }
-    .seasonal-card__caption h3 { font-size: 1.02rem; }
-    .seasonal-feature__note { text-align: left; }
+    .seasonal-feature { padding: 3.6rem 0; }
+    .seasonal-feature__intro { margin-bottom: 1.65rem; }
+    .seasonal-feature__grid {
+      grid-template-columns: 1fr;
+      gap: .85rem;
+    }
+    .seasonal-card,
+    .seasonal-feature--compact .seasonal-card {
+      aspect-ratio: 4 / 5;
+    }
+    .seasonal-card__caption {
+      right: .6rem;
+      bottom: .6rem;
+      left: .6rem;
+      padding: .72rem .75rem .68rem;
+    }
+    .seasonal-card__caption p { font-size: .66rem; }
+    .seasonal-card__caption h3 { font-size: clamp(1.08rem, 6vw, 1.35rem); }
+    .seasonal-feature__note { margin-top: .85rem; text-align: left; }
   }
 </style>

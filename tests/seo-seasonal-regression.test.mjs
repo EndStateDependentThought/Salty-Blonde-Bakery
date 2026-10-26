@@ -95,3 +95,13 @@ test('public review ratings match the current October 26 snapshot', async () => 
     assert.match(reviews, pattern, `${platform} rating is not ${rating}`);
   }
 });
+
+
+test('seasonal gallery gives each fall special equal visual priority across breakpoints', async () => {
+  const component = await read('src/components/shared/SeasonalFeature.astro');
+  assert.match(component, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(component, /aspect-ratio: 1 \/ 1/);
+  assert.match(component, /@media \(max-width: 620px\)[\s\S]*grid-template-columns: 1fr/);
+  assert.match(component, /@media \(max-width: 620px\)[\s\S]*aspect-ratio: 4 \/ 5/);
+  assert.doesNotMatch(component, /grid-row: 1 \/ 3|grid-column: 1 \/ 3/);
+});
